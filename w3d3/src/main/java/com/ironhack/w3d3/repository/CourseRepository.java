@@ -40,6 +40,9 @@ public interface CourseRepository extends JpaRepository<Course, String> {
     @Query("SELECT c FROM Course c WHERE c.hours < 200")
     List<Course> findAllWhereHoursLessThan200();
 
+    @Query("SELECT c FROM Course c WHERE c.hours < ?1")
+    List<Course> findAllWhereHoursLessThanParam(Integer hours);
+
     @Query("SELECT c FROM Course c WHERE c.classroom = ?1 AND c.hours < ?2")
     List<Course> findAllWhereClassroomAndHoursParams(String classroom, Integer hours);
 
@@ -51,4 +54,42 @@ public interface CourseRepository extends JpaRepository<Course, String> {
 
     @Query("SELECT c FROM Course c WHERE c.course LIKE CONCAT('%', :strParam, '%')")
     List<Course> findAllWhereContainingStrParam(@Param("strParam") String str);
+
+
+//    NATIVE SQL
+
+    @Query(value = "SELECT * FROM course c WHERE c.hours = 150",
+            nativeQuery = true)
+    List<Course> nativeFindAllWhereHours150();
+
+    @Query(value = "SELECT SUM(c.hours) FROM course c",
+            nativeQuery = true)
+    Integer nativeFindHoursSum();
+
+    @Query(value = "SELECT * FROM course c WHERE c.classroom = 'B1'",
+            nativeQuery = true)
+    List<Course> nativeFindAllWhereClassroomB1();
+
+    @Query(value = "SELECT * FROM course c WHERE c.course LIKE '%Algebra%'",
+            nativeQuery = true)
+    List<Course> nativeFindAllWhereContainingAlgebra();
+
+    @Query(value = "SELECT * FROM course c WHERE c.hours < 200",
+            nativeQuery = true)
+    List<Course> nativeFindAllWhereHoursLessThan200();
+
+    @Query(value = "SELECT * FROM course c WHERE c.classroom = ?1 AND c.hours < ?2",
+            nativeQuery = true)
+    List<Course> nativeFindAllWhereClassroomAndHoursParams(String classroom, Integer hours);
+
+    @Query(value = "SELECT * FROM course c WHERE c.classroom = :classroomParam AND c.hours < :hoursParam",
+            nativeQuery = true)
+    List<Course> nativeFindAllWhereClassroomAndHoursNamedParams(
+            @Param("classroomParam") String classroom,
+            @Param("hoursParam") Integer hours
+    );
+
+    @Query(value = "SELECT * FROM course c WHERE c.course LIKE CONCAT('%', :strParam, '%')",
+            nativeQuery = true)
+    List<Course> nativeFindAllWhereContainingStrParam(@Param("strParam") String str);
 }
