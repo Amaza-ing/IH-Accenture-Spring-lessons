@@ -31,59 +31,69 @@ INSERT INTO course (course, hours, classroom, vacations, teacher_id) VALUES
 ('Physics', 200, 'C1', '3 weeks', 1),
 ('Chemistry', 120, 'Lab1', '2 weeks', 3);
 
-SELECT * FROM teacher; 
-SELECT * FROM course;
 
-SELECT * FROM course ORDER BY hours;
-SELECT * FROM course ORDER BY hours DESC;
-SELECT * FROM course ORDER BY hours DESC LIMIT 2;
 
-SELECT course, hours FROM course;
-SELECT course, hours FROM course WHERE hours >= 100 AND hours <= 200;
-SELECT course, hours FROM course WHERE hours BETWEEN 100 AND 200;
 
-SELECT * FROM course WHERE classroom = 'B1';
-SELECT * FROM course WHERE classroom LIKE '_1';
-SELECT * FROM course WHERE classroom LIKE '%1';
-SELECT * FROM course WHERE course LIKE '%p%';
 
-SELECT classroom FROM course;
-SELECT COUNT(classroom) AS classrooms FROM course;
-SELECT DISTINCT classroom FROM course;
-SELECT COUNT(DISTINCT classroom) AS different_classrooms FROM course;
 
-SELECT SUM(hours) AS total_hours FROM course;
-SELECT SUM(hours) AS total_hours FROM course WHERE teacher_id = 1;
 
-SELECT AVG(hours) AS avg_hours FROM course;
 
-SELECT MAX(hours) AS max_hours, MIN(hours) AS min_hours FROM course;
 
-SELECT teacher_id, SUM(hours) AS total_hours FROM course GROUP BY teacher_id;
-SELECT teacher_id, SUM(hours) AS total_hours FROM course GROUP BY teacher_id HAVING total_hours > 200;
 
-SELECT *
-FROM course c
-JOIN teacher t ON c.teacher_id = t.id;
 
-SELECT c.course, c.hours, c.classroom, t.teacher
-FROM course c
-JOIN teacher t ON c.teacher_id = t.id;
+-- SELECT * FROM teacher; 
+-- SELECT * FROM course;
+
+-- SELECT * FROM course ORDER BY hours;
+-- SELECT * FROM course ORDER BY hours DESC;
+-- SELECT * FROM course ORDER BY hours DESC LIMIT 2;
+
+-- SELECT course, hours FROM course;
+-- SELECT course, hours FROM course WHERE hours >= 100 AND hours <= 200;
+-- SELECT course, hours FROM course WHERE hours BETWEEN 100 AND 200;
+
+-- SELECT * FROM course WHERE classroom = 'B1';
+-- SELECT * FROM course WHERE classroom LIKE '_1';
+-- SELECT * FROM course WHERE classroom LIKE '%1';
+-- SELECT * FROM course WHERE course LIKE '%p%';
+
+-- SELECT classroom FROM course;
+-- SELECT COUNT(classroom) AS classrooms FROM course;
+-- SELECT DISTINCT classroom FROM course;
+-- SELECT COUNT(DISTINCT classroom) AS different_classrooms FROM course;
+
+-- SELECT SUM(hours) AS total_hours FROM course;
+-- SELECT SUM(hours) AS total_hours FROM course WHERE teacher_id = 1;
+
+-- SELECT AVG(hours) AS avg_hours FROM course;
+
+-- SELECT MAX(hours) AS max_hours, MIN(hours) AS min_hours FROM course;
+
+-- SELECT teacher_id, SUM(hours) AS total_hours FROM course GROUP BY teacher_id;
+-- SELECT teacher_id, SUM(hours) AS total_hours FROM course GROUP BY teacher_id HAVING total_hours > 200;
+
+-- SELECT *
+-- FROM course c
+-- JOIN teacher t ON c.teacher_id = t.id;
 
 -- SELECT c.course, c.hours, c.classroom, t.teacher
 -- FROM course c
--- INNER JOIN teacher t ON c.teacher_id = t.id;
+-- JOIN teacher t ON c.teacher_id = t.id;
+
+-- -- SELECT c.course, c.hours, c.classroom, t.teacher
+-- -- FROM course c
+-- -- INNER JOIN teacher t ON c.teacher_id = t.id;
+
+-- -- SELECT c.course, c.hours, c.classroom, t.teacher
+-- -- FROM course c
+-- -- LEFT JOIN teacher t ON c.teacher_id = t.id;
 
 -- SELECT c.course, c.hours, c.classroom, t.teacher
 -- FROM course c
--- LEFT JOIN teacher t ON c.teacher_id = t.id;
+-- JOIN teacher t ON c.teacher_id = t.id
+-- WHERE c.hours > 100;
 
-SELECT c.course, c.hours, c.classroom, t.teacher
-FROM course c
-JOIN teacher t ON c.teacher_id = t.id
-WHERE c.hours > 100;
-
-SELECT t.teacher, SUM(c.hours) AS total_hours
-FROM course c
-JOIN teacher t ON c.teacher_id = t.id
-GROUP BY t.teacher;
+-- SELECT t.teacher, SUM(c.hours) AS total_hours
+-- FROM course c
+-- JOIN teacher t ON c.teacher_id = t.id
+-- GROUP BY t.teacher;

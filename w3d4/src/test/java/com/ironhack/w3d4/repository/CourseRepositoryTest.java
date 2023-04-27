@@ -1,6 +1,7 @@
 package com.ironhack.w3d4.repository;
 
 import com.ironhack.w3d4.model.Course;
+import com.ironhack.w3d4.model.Teacher;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,9 +19,13 @@ class CourseRepositoryTest {
     @Autowired
     CourseRepository courseRepository;
 
+    @Autowired
+    TeacherRepository teacherRepository;
+
     @BeforeEach
     public void setUp() {
-        Course algebra = new Course("Algebra", 150, "B1", "2 weeks", 2);
+        Optional<Teacher> teacher = teacherRepository.findById(1);
+        Course algebra = new Course("Algebra", 150, "B1", "2 weeks", teacher.get());
         courseRepository.save(algebra);
     }
 
@@ -174,7 +179,7 @@ class CourseRepositoryTest {
     void nativeFindHoursSum__HoursSum() {
         Integer hoursSum = courseRepository.nativeFindHoursSum();
         System.out.println(hoursSum);
-        assertEquals(940, hoursSum);
+        assertEquals(960, hoursSum);
     }
 
     @Test

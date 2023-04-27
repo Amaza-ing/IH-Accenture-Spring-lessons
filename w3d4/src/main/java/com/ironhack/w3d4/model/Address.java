@@ -1,9 +1,6 @@
 package com.ironhack.w3d4.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Address {
@@ -12,6 +9,11 @@ public class Address {
     private Integer id;
     private String street;
     private String houseCode;
+
+//    No hacer la relación bidireccional a no ser que queramos a ciencia cierta
+//    cuidado con hacer esto porque puede oscasionar un bucle infinito
+//    @OneToOne(mappedBy = "address")
+//    private Teacher teacher;
 
     public Address() {
     }

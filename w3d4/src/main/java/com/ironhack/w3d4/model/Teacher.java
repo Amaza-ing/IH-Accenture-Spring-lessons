@@ -2,6 +2,8 @@ package com.ironhack.w3d4.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Teacher {
     @Id
@@ -12,6 +14,11 @@ public class Teacher {
     @OneToOne
     @JoinColumn(name = "address_id")
     private Address address;
+
+//    Sólo utilizar este mapeo si queremos una relación bidireccional
+//    Si lo utilizamos, hay que tener cuidado de no ocasionar un error de tipo stackOverflow (bucle infinito)
+//    @OneToMany(mappedBy = "teacher")
+//    private List<Course> courses;
 
     public Teacher() {
     }
@@ -45,12 +52,21 @@ public class Teacher {
         this.address = address;
     }
 
+//    public List<Course> getCourses() {
+//        return courses;
+//    }
+//
+//    public void setCourses(List<Course> courses) {
+//        this.courses = courses;
+//    }
+
     @Override
     public String toString() {
         return "Teacher{" +
                 "teacherId=" + teacherId +
                 ", teacher='" + teacher + '\'' +
                 ", address=" + address +
+//                ", courses=" + courses +
                 '}';
     }
 }
