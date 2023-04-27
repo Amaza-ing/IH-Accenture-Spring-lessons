@@ -17,10 +17,10 @@ INSERT INTO address (street, house_code) VALUES
 
 
 CREATE TABLE teacher (
-	id INT NOT NULL AUTO_INCREMENT,
+	teacher_id INT NOT NULL AUTO_INCREMENT,
     teacher VARCHAR(255),
     address_id INT,
-    PRIMARY KEY (id),
+    PRIMARY KEY (teacher_id),
     FOREIGN KEY (address_id) REFERENCES address (id)
 );
 
@@ -31,13 +31,13 @@ CREATE TABLE course (
     vacations VARCHAR(255),
     teacher_id INT NOT NULL,
     PRIMARY KEY (course),
-    FOREIGN KEY (teacher_id) REFERENCES teacher(id)
+    FOREIGN KEY (teacher_id) REFERENCES teacher(teacher_id)
 );
 
-INSERT INTO teacher (teacher) VALUES
-('Alberto García'),
-('Beatriz López'),
-('Carmen Martín');
+INSERT INTO teacher (teacher, address_id) VALUES
+('Alberto García', 1),
+('Beatriz López', 2),
+('Carmen Martín', 3);
 
 INSERT INTO course (course, hours, classroom, vacations, teacher_id) VALUES
 ('Math', 100, 'A1', '2 weeks', 1),
