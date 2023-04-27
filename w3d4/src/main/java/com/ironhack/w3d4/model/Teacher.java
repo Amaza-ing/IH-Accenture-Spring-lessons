@@ -3,29 +3,30 @@ package com.ironhack.w3d4.model;
 import jakarta.persistence.*;
 
 @Entity
-//@Table(name = "teacher") // En caso de que la tabla se llame de manera diferente a la clase
 public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name = "id") // En caso de que la propiedad se llame de manera diferente al campo
-    private Integer id;
-
-//    @Column(name = "teacher")  // En caso de que la propiedad se llame de manera diferente al campo
+    private Integer teacherId;
     private String teacher;
+
+    @OneToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
 
     public Teacher() {
     }
 
-    public Teacher(String teacher) {
+    public Teacher(String teacher, Address address) {
         this.teacher = teacher;
+        this.address = address;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getTeacherId() {
+        return teacherId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setTeacherId(Integer teacherId) {
+        this.teacherId = teacherId;
     }
 
     public String getTeacher() {
@@ -36,11 +37,20 @@ public class Teacher {
         this.teacher = teacher;
     }
 
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
     @Override
     public String toString() {
         return "Teacher{" +
-                "id=" + id +
+                "teacherId=" + teacherId +
                 ", teacher='" + teacher + '\'' +
+                ", address=" + address +
                 '}';
     }
 }
