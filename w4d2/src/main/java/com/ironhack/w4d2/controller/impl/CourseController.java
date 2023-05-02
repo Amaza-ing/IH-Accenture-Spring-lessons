@@ -1,5 +1,7 @@
 package com.ironhack.w4d2.controller.impl;
 
+import com.ironhack.w4d2.controller.dto.CourseClassroomDTO;
+import com.ironhack.w4d2.controller.dto.CourseHoursDTO;
 import com.ironhack.w4d2.controller.interfaces.ICourseController;
 import com.ironhack.w4d2.model.Course;
 import com.ironhack.w4d2.repository.CourseRepository;
@@ -56,5 +58,38 @@ public class CourseController implements ICourseController {
     @ResponseStatus(HttpStatus.CREATED)
     public void saveCourse(@RequestBody @Valid Course course) {
         courseRepository.save(course);
+    }
+
+
+    //  ******************************************************  PUT  ******************************************************
+
+    @PutMapping("/courses/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateCourse(@RequestBody @Valid Course course, @PathVariable String id) {
+        courseService.updateCourse(course, id);
+    }
+
+
+    //  *****************************************************  PATCH  *****************************************************
+
+    @PatchMapping("/courses/hours/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateCourseHours(@RequestBody @Valid CourseHoursDTO courseHoursDTO, @PathVariable String id) {
+        courseService.updateCourseHours(courseHoursDTO.getHours(), id);
+    }
+
+    @PatchMapping("/courses/classroom/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateCourseClassroom(@RequestBody @Valid CourseClassroomDTO courseClassroomDTO, @PathVariable String id) {
+        courseService.updateCourseClassroom(courseClassroomDTO.getClassroom(), id);
+    }
+
+
+    //  ****************************************************  DELETE  *****************************************************
+
+    @DeleteMapping("/courses/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteCourse(@PathVariable String id) {
+        courseService.deleteCourse(id);
     }
 }

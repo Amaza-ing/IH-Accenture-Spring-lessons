@@ -10,8 +10,10 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
+@DynamicUpdate
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
