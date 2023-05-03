@@ -218,6 +218,9 @@ class CourseControllerTest {
                 .andReturn();
     }
 
+
+    //  ****************************************************  DELETE  *****************************************************
+
     @Test
     void deleteCourse__courseDeleted() throws Exception {
         Address address = new Address("calle falsa", "123");
