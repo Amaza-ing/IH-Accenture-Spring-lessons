@@ -57,7 +57,7 @@ public class CourseController implements ICourseController {
     @PostMapping("/courses")
     @ResponseStatus(HttpStatus.CREATED)
     public void saveCourse(@RequestBody @Valid Course course) {
-        courseRepository.save(course);
+        courseService.saveCourse(course);
     }
 
 

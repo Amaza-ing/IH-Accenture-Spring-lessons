@@ -13,7 +13,7 @@ public class Teacher {
     private Integer teacherId;
     private String teacher;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
     private Address address;
 
