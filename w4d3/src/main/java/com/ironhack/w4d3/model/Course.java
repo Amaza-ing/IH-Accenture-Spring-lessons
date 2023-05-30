@@ -27,7 +27,8 @@ public class Course {
 
     private String vacations;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+//    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 }
